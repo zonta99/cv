@@ -6,51 +6,41 @@
     <title>Riccardo Zonta - Software Architect</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* ===== CSS CUSTOM PROPERTIES (DESIGN SYSTEM) ===== */
+        /* ===== CSS VARIABLES ===== */
         :root {
-            /* Color Palette - Dark Elegant Theme */
-            --color-primary: #0a0a0b;
-            --color-secondary: #1a1a1d;
-            --color-tertiary: #2d2d30;
-            --color-accent: #ffd700;
-            --color-accent-secondary: #00d4ff;
-            --color-text-primary: #ffffff;
-            --color-text-secondary: #b8b9ba;
-            --color-text-muted: #6c6d70;
-            --color-border: #3a3a3d;
-            --color-surface: #161618;
-            --color-surface-elevated: #1e1e21;
+            /* Modern Professional Palette */
+            --color-primary: #1e293b;
+            --color-secondary: #334155;
+            --color-accent: #3b82f6;
+            --color-accent-light: #60a5fa;
+            --color-text-primary: #0f172a;
+            --color-text-secondary: #475569;
+            --color-text-muted: #64748b;
+            --color-background: #ffffff;
+            --color-background-alt: #f8fafc;
+            --color-border: #e2e8f0;
+            --color-border-light: #f1f5f9;
             
             /* Typography */
-            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             
-            /* Spacing Scale */
+            /* Spacing */
             --space-xs: 0.5rem;
             --space-sm: 1rem;
             --space-md: 1.5rem;
             --space-lg: 2rem;
             --space-xl: 3rem;
-            --space-2xl: 4rem;
             
             /* Border Radius */
-            --radius-sm: 4px;
-            --radius-md: 8px;
+            --radius: 8px;
             --radius-lg: 12px;
-            --radius-xl: 16px;
             
             /* Shadows */
-            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
-            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
-            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.6);
-            --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.7);
-            
-            /* Transitions */
-            --transition-fast: 0.15s ease-out;
-            --transition-normal: 0.25s ease-out;
-            --transition-slow: 0.4s ease-out;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
 
         /* ===== RESET & BASE ===== */
@@ -61,356 +51,157 @@
         }
 
         body {
-            font-family: var(--font-primary);
-            background: var(--color-primary);
-            color: var(--color-text-primary);
+            font-family: var(--font-family);
             line-height: 1.6;
-            font-weight: 400;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            color: var(--color-text-primary);
+            background: var(--color-background-alt);
+            font-size: 14px;
         }
 
         /* ===== LAYOUT ===== */
-        .cv-container {
+        .container {
             max-width: 1200px;
             margin: var(--space-lg) auto;
-            background: var(--color-surface);
-            border-radius: var(--radius-xl);
+            background: var(--color-background);
+            border-radius: var(--radius-lg);
             overflow: hidden;
-            box-shadow: var(--shadow-xl);
+            box-shadow: var(--shadow-lg);
             border: 1px solid var(--color-border);
         }
 
-        /* ===== HEADER SECTION ===== */
+        /* ===== HEADER ===== */
         .header {
-            background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-tertiary) 100%);
-            padding: var(--space-2xl) var(--space-xl);
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: white;
+            padding: var(--space-xl);
             position: relative;
-            overflow: hidden;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: -20%;
-            width: 40%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.03));
-            pointer-events: none;
         }
 
         .header-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .name {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: var(--space-xs);
-            background: linear-gradient(135deg, var(--color-text-primary) 0%, var(--color-accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .job-title {
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
-            font-weight: 300;
-            color: var(--color-text-secondary);
-            margin-bottom: var(--space-lg);
-            letter-spacing: 0.01em;
-        }
-
-        .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: var(--space-md);
+            grid-template-columns: 1fr auto;
+            gap: var(--space-lg);
+            align-items: center;
+        }
+
+        .name-section h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: var(--space-xs);
+            letter-spacing: -0.025em;
+        }
+
+        .title {
+            font-size: 1.25rem;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: var(--space-lg);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-sm);
         }
 
         .contact-item {
             display: flex;
             align-items: center;
-            gap: var(--space-sm);
-            padding: var(--space-sm);
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: var(--radius-md);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all var(--transition-normal);
-        }
-
-        .contact-item:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-2px);
+            gap: var(--space-xs);
+            font-size: 0.9rem;
         }
 
         .contact-icon {
-            width: 20px;
-            height: 20px;
             opacity: 0.8;
         }
 
-        /* ===== MAIN LAYOUT ===== */
-        .content-grid {
+        /* ===== MAIN CONTENT ===== */
+        .main-content {
             display: grid;
-            grid-template-columns: 350px 1fr;
-            min-height: calc(100vh - 200px);
+            grid-template-columns: 320px 1fr;
         }
 
+        /* ===== SIDEBAR ===== */
         .sidebar {
-            background: var(--color-surface-elevated);
+            background: var(--color-background-alt);
             padding: var(--space-xl);
             border-right: 1px solid var(--color-border);
         }
 
-        .main-content {
-            padding: var(--space-xl);
-            background: var(--color-surface);
-        }
-
-        /* ===== SECTIONS ===== */
-        .section {
-            margin-bottom: var(--space-2xl);
+        .sidebar .section {
+            margin-bottom: var(--space-xl);
         }
 
         .section-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--color-accent);
-            margin-bottom: var(--space-lg);
-            position: relative;
-            letter-spacing: -0.01em;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 60px;
-            height: 2px;
-            background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
-            border-radius: 1px;
-        }
-
-        /* ===== SKILLS SECTION ===== */
-        .skill-category {
-            background: var(--color-tertiary);
-            border-radius: var(--radius-lg);
-            padding: var(--space-lg);
-            margin-bottom: var(--space-md);
-            border: 1px solid var(--color-border);
-            transition: all var(--transition-normal);
-        }
-
-        .skill-category:hover {
-            background: rgba(45, 45, 48, 0.8);
-            border-color: var(--color-accent);
-            box-shadow: var(--shadow-md);
-        }
-
-        .skill-category-title {
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 600;
             color: var(--color-text-primary);
             margin-bottom: var(--space-md);
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
+            padding-bottom: var(--space-xs);
+            border-bottom: 2px solid var(--color-accent);
+        }
+
+        /* ===== SKILLS ===== */
+        .skill-group {
+            margin-bottom: var(--space-lg);
+        }
+
+        .skill-group-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            margin-bottom: var(--space-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .skill-list {
+            list-style: none;
         }
 
         .skill-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             padding: var(--space-xs) 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+            border-bottom: 1px solid var(--color-border-light);
         }
 
         .skill-item:last-child {
             border-bottom: none;
         }
 
-        .skill-name {
-            color: var(--color-text-secondary);
-        }
-
         .skill-level {
-            background: var(--color-accent);
-            color: var(--color-primary);
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 0.75rem;
             font-weight: 500;
-            font-family: var(--font-mono);
-        }
-
-        /* ===== EXPERIENCE SECTION ===== */
-        .experience-item {
-            background: var(--color-surface-elevated);
-            border-radius: var(--radius-lg);
-            padding: var(--space-xl);
-            margin-bottom: var(--space-lg);
-            border-left: 4px solid var(--color-accent);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .experience-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.02));
-            pointer-events: none;
-        }
-
-        .job-header {
-            margin-bottom: var(--space-lg);
-        }
-
-        .position-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: var(--color-text-primary);
-            margin-bottom: var(--space-xs);
-            letter-spacing: -0.01em;
-        }
-
-        .company-name {
-            font-size: 1.1rem;
-            color: var(--color-accent-secondary);
-            font-weight: 500;
-            margin-bottom: var(--space-xs);
-        }
-
-        .period {
-            color: var(--color-text-muted);
-            font-size: 0.9rem;
-            font-family: var(--font-mono);
-        }
-
-        .experience-category {
-            margin-bottom: var(--space-lg);
-        }
-
-        .category-title {
-            font-size: 1.1rem;
-            font-weight: 600;
             color: var(--color-accent);
-            margin-bottom: var(--space-md);
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-        }
-
-        .achievement-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .achievement-item {
-            position: relative;
-            padding-left: var(--space-lg);
-            margin-bottom: var(--space-sm);
-            color: var(--color-text-secondary);
-            line-height: 1.6;
-        }
-
-        .achievement-item::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            top: 0;
-            color: var(--color-accent);
-            font-weight: 600;
-        }
-
-        .tech-highlight {
-            background: linear-gradient(90deg, var(--color-accent), var(--color-accent-secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 500;
-        }
-
-        /* ===== PROJECTS SECTION ===== */
-        .project-card {
-            background: var(--color-surface-elevated);
-            border-radius: var(--radius-lg);
-            padding: var(--space-xl);
-            margin-bottom: var(--space-lg);
-            border: 1px solid var(--color-border);
-            transition: all var(--transition-normal);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-card:hover {
-            border-color: var(--color-accent-secondary);
-            box-shadow: var(--shadow-lg);
-            transform: translateY(-4px);
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
-        }
-
-        .project-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--color-text-primary);
-            margin-bottom: var(--space-sm);
-            letter-spacing: -0.01em;
-        }
-
-        .project-stack {
-            color: var(--color-accent-secondary);
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            margin-bottom: var(--space-md);
-            opacity: 0.9;
         }
 
         /* ===== EDUCATION & LANGUAGES ===== */
         .info-card {
-            background: var(--color-tertiary);
-            border-radius: var(--radius-lg);
-            padding: var(--space-lg);
-            margin-bottom: var(--space-md);
+            background: var(--color-background);
+            padding: var(--space-md);
+            border-radius: var(--radius);
             border: 1px solid var(--color-border);
+            margin-bottom: var(--space-md);
         }
 
         .degree-title {
-            font-size: 1.1rem;
             font-weight: 600;
             color: var(--color-text-primary);
             margin-bottom: var(--space-xs);
         }
 
         .university {
-            color: var(--color-accent-secondary);
-            margin-bottom: var(--space-sm);
+            color: var(--color-accent);
+            font-size: 0.9rem;
+            margin-bottom: var(--space-xs);
         }
 
         .language-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: var(--space-sm) 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: var(--space-xs) 0;
+            border-bottom: 1px solid var(--color-border-light);
         }
 
         .language-item:last-child {
@@ -419,126 +210,208 @@
 
         .language-level {
             background: var(--color-accent);
-            color: var(--color-primary);
-            padding: 4px 12px;
-            border-radius: 16px;
-            font-size: 0.8rem;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
             font-weight: 500;
-            font-family: var(--font-mono);
         }
 
-        /* ===== PROFILE SECTION ===== */
+        /* ===== MAIN CONTENT AREA ===== */
+        .content {
+            padding: var(--space-xl);
+        }
+
+        .content .section {
+            margin-bottom: var(--space-xl);
+        }
+
+        .content .section-title {
+            font-size: 1.3rem;
+            color: var(--color-primary);
+            border-bottom: 2px solid var(--color-accent);
+            padding-bottom: var(--space-sm);
+        }
+
+        /* ===== PROFILE ===== */
         .profile-text {
-            font-size: 1.1rem;
+            font-size: 1rem;
             line-height: 1.7;
             color: var(--color-text-secondary);
             text-align: justify;
         }
 
+        .highlight {
+            font-weight: 600;
+            color: var(--color-accent);
+        }
+
+        /* ===== EXPERIENCE ===== */
+        .experience-item {
+            background: var(--color-background);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-lg);
+            position: relative;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--color-accent);
+            border-radius: var(--radius) 0 0 var(--radius);
+        }
+
+        .job-header {
+            margin-bottom: var(--space-md);
+            padding-left: var(--space-md);
+        }
+
+        .position-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-xs);
+        }
+
+        .company-name {
+            color: var(--color-accent);
+            font-weight: 500;
+            margin-bottom: var(--space-xs);
+        }
+
+        .period {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+
+        .experience-section {
+            margin-bottom: var(--space-md);
+            padding-left: var(--space-md);
+        }
+
+        .experience-section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-secondary);
+            margin-bottom: var(--space-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+
+        .achievement-list {
+            list-style: none;
+        }
+
+        .achievement-item {
+            position: relative;
+            padding-left: var(--space-md);
+            margin-bottom: var(--space-sm);
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .achievement-item::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        /* ===== PROJECTS ===== */
+        .project-card {
+            background: var(--color-background);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-lg);
+            transition: all 0.2s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--color-accent-light);
+            box-shadow: var(--shadow-md);
+        }
+
+        .project-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-sm);
+        }
+
+        .project-meta {
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+            margin-bottom: var(--space-md);
+            font-style: italic;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-xs);
+            margin-bottom: var(--space-md);
+        }
+
+        .tech-tag {
+            background: var(--color-background-alt);
+            color: var(--color-accent);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border: 1px solid var(--color-border);
+        }
+
         /* ===== SOFT SKILLS ===== */
         .soft-skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: var(--space-md);
         }
 
-        .soft-skill-card {
-            background: var(--color-surface-elevated);
-            padding: var(--space-lg);
-            border-radius: var(--radius-lg);
-            border-left: 4px solid var(--color-accent-secondary);
-            transition: all var(--transition-normal);
-        }
-
-        .soft-skill-card:hover {
-            background: var(--color-tertiary);
-            transform: translateY(-2px);
+        .soft-skill-item {
+            background: var(--color-background-alt);
+            padding: var(--space-md);
+            border-radius: var(--radius);
+            border: 1px solid var(--color-border);
         }
 
         .soft-skill-title {
             font-weight: 600;
             color: var(--color-text-primary);
             margin-bottom: var(--space-xs);
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
         }
 
         .soft-skill-desc {
             color: var(--color-text-secondary);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         /* ===== FOOTER ===== */
         .footer {
             text-align: center;
             padding: var(--space-lg);
-            background: var(--color-surface-elevated);
+            background: var(--color-background-alt);
             border-top: 1px solid var(--color-border);
             color: var(--color-text-muted);
-            font-size: 0.9rem;
-            font-style: italic;
+            font-size: 0.85rem;
         }
 
-        /* ===== RESPONSIVE DESIGN ===== */
-        @media (max-width: 1024px) {
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .sidebar {
-                border-right: none;
-                border-bottom: 1px solid var(--color-border);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .cv-container {
-                margin: var(--space-sm);
-                border-radius: var(--radius-md);
-            }
-            
-            .header {
-                padding: var(--space-xl) var(--space-lg);
-            }
-            
-            .sidebar, .main-content {
-                padding: var(--space-lg);
-            }
-            
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .soft-skills-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* ===== PRINT STYLES A4 OPTIMIZED ===== */
+        /* ===== PRINT STYLES ===== */
         @media print {
             @page {
                 size: A4;
                 margin: 15mm;
-            }
-            
-            :root {
-                --color-primary: #ffffff;
-                --color-secondary: #f8f9fa;
-                --color-tertiary: #e9ecef;
-                --color-accent: #333333;
-                --color-accent-secondary: #666666;
-                --color-text-primary: #000000;
-                --color-text-secondary: #333333;
-                --color-text-muted: #666666;
-                --color-border: #cccccc;
-                --color-surface: #ffffff;
-                --color-surface-elevated: #f8f9fa;
-            }
-            
-            * {
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
             }
             
             body {
@@ -547,7 +420,7 @@
                 line-height: 1.4;
             }
             
-            .cv-container {
+            .container {
                 box-shadow: none !important;
                 margin: 0 !important;
                 border: none !important;
@@ -559,54 +432,38 @@
                 background: #f8f9fa !important;
                 color: #000000 !important;
                 padding: 20px !important;
-                page-break-after: avoid;
             }
             
-            .name {
-                background: none !important;
-                -webkit-background-clip: initial !important;
-                -webkit-text-fill-color: initial !important;
+            .name-section h1 {
                 color: #000000 !important;
                 font-size: 24px !important;
             }
             
-            .job-title {
+            .title {
                 color: #333333 !important;
                 font-size: 14px !important;
             }
             
-            .content-grid {
-                grid-template-columns: 35% 65% !important;
-                gap: 0 !important;
-            }
-            
-            .sidebar {
-                padding: 15px !important;
-                border-right: 1px solid #cccccc !important;
-            }
-            
             .main-content {
+                grid-template-columns: 35% 65% !important;
+            }
+            
+            .sidebar, .content {
                 padding: 15px !important;
             }
             
             .section {
-                margin-bottom: 20px !important;
+                margin-bottom: 15px !important;
                 page-break-inside: avoid;
             }
             
             .section-title {
-                font-size: 14px !important;
+                font-size: 12px !important;
                 color: #000000 !important;
                 border-bottom: 1px solid #cccccc !important;
-                padding-bottom: 5px !important;
-                margin-bottom: 10px !important;
             }
             
-            .section-title::after {
-                display: none !important;
-            }
-            
-            .skill-category, .info-card, .project-card, .experience-item {
+            .experience-item, .project-card, .info-card {
                 background: #ffffff !important;
                 border: 1px solid #e0e0e0 !important;
                 box-shadow: none !important;
@@ -615,373 +472,266 @@
                 page-break-inside: avoid;
             }
             
-            .skill-level, .language-level {
+            .tech-tag, .language-level {
                 background: #f0f0f0 !important;
                 color: #000000 !important;
                 border: 1px solid #cccccc !important;
             }
             
-            .project-stack {
-                color: #666666 !important;
-                font-size: 10px !important;
-            }
-            
-            .tech-highlight {
-                background: none !important;
-                -webkit-background-clip: initial !important;
-                -webkit-text-fill-color: initial !important;
+            .highlight {
                 color: #000000 !important;
                 font-weight: 600 !important;
             }
-            
-            .contact-item {
-                background: #f8f9fa !important;
-                border: 1px solid #e0e0e0 !important;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .container {
+                margin: var(--space-sm);
+                border-radius: var(--radius);
             }
             
-            .footer {
-                page-break-before: avoid;
-                border-top: 1px solid #cccccc !important;
-                background: #f8f9fa !important;
-                font-size: 10px !important;
+            .main-content {
+                grid-template-columns: 1fr;
             }
             
-            /* Hide decorative elements */
-            .header::before,
-            .experience-item::before,
-            .project-card::before {
-                display: none !important;
+            .sidebar {
+                border-right: none;
+                border-bottom: 1px solid var(--color-border);
             }
-        }
-
-        /* ===== ANIMATIONS ===== */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
+            
+            .header-content {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            
+            .contact-info {
+                grid-template-columns: 1fr;
             }
-        }
-
-        .section {
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        /* ===== SCROLLBAR STYLING ===== */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--color-secondary);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--color-accent);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--color-accent-secondary);
         }
     </style>
 </head>
 <body>
-    <div class="cv-container">
-        <!-- Header Section -->
+    <div class="container">
+        <!-- Header -->
         <header class="header">
             <div class="header-content">
-                <h1 class="name">RICCARDO ZONTA</h1>
-                <p class="job-title">Software Architect & Senior Backend Developer</p>
-                <div class="contact-grid">
-                    <div class="contact-item">
-                        <span class="contact-icon">📍</span>
-                        <span>Conegliano, Veneto, Italia</span>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">📧</span>
-                        <span>zonta.riccardo99@gmail.com</span>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">🎂</span>
-                        <span>28/07/1999</span>
+                <div class="name-section">
+                    <h1>RICCARDO ZONTA</h1>
+                    <p class="title">Software Architecture & Full Stack Developer</p>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <span>Conegliano, Veneto, Italia</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">✉️</span>
+                            <span>zonta.riccardo99@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">🎂</span>
+                            <span>28/07/1999</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </header>
 
-        <!-- Main Content Grid -->
-        <div class="content-grid">
+        <!-- Main Content -->
+        <div class="main-content">
             <!-- Sidebar -->
             <aside class="sidebar">
                 <!-- Technical Skills -->
                 <section class="section">
-                    <h2 class="section-title">Technical Skills</h2>
+                    <h2 class="section-title">Competenze Tecniche</h2>
                     
-                    <div class="skill-category">
-                        <h3 class="skill-category-title">🏗️ Software Architecture</h3>
-                        <div class="skill-item">
-                            <span class="skill-name">Clean Architecture, Onion, Hexagonal</span>
-                            <span class="skill-level">Expert</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Domain-Driven Design (DDD)</span>
-                            <span class="skill-level">Expert</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">CQRS, Event Sourcing</span>
-                            <span class="skill-level">Advanced</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Microservices Architecture</span>
-                            <span class="skill-level">Advanced</span>
-                        </div>
+                    <div class="skill-group">
+                        <h3 class="skill-group-title">Linguaggi di Programmazione</h3>
+                        <ul class="skill-list">
+                            <li class="skill-item"><span class="skill-level">Expert:</span> PHP, JavaScript (ES6), C#</li>
+                            <li class="skill-item"><span class="skill-level">Advanced:</span> TypeScript, Python, SQL, Java</li>
+                        </ul>
                     </div>
 
-                    <div class="skill-category">
-                        <h3 class="skill-category-title">💻 Programming Languages</h3>
-                        <div class="skill-item">
-                            <span class="skill-name">C# (.NET Core/5+)</span>
-                            <span class="skill-level">Expert</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Java (Spring Ecosystem)</span>
-                            <span class="skill-level">Expert</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">PHP (Enterprise)</span>
-                            <span class="skill-level">Advanced</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">JavaScript (ES6+), TypeScript</span>
-                            <span class="skill-level">Advanced</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Python, SQL</span>
-                            <span class="skill-level">Advanced</span>
-                        </div>
+                    <div class="skill-group">
+                        <h3 class="skill-group-title">Software Architecture</h3>
+                        <ul class="skill-list">
+                            <li class="skill-item">Clean Architecture, Onion, Hexagonal</li>
+                            <li class="skill-item">Domain-Driven Design (DDD)</li>
+                            <li class="skill-item">CQRS, Event Sourcing</li>
+                            <li class="skill-item">Microservices Architecture</li>
+                            <li class="skill-item">Dependency Injection (IoC)</li>
+                        </ul>
                     </div>
 
-                    <div class="skill-category">
-                        <h3 class="skill-category-title">⚡ Backend Frameworks</h3>
-                        <div class="skill-item">
-                            <span class="skill-name">Spring Boot + Security + Data</span>
-                            <span class="skill-level">Expert</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">ASP.NET Core Web API</span>
-                            <span class="skill-level">Expert</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Entity Framework Core</span>
-                            <span class="skill-level">Expert</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Dependency Injection (IoC)</span>
-                            <span class="skill-level">Expert</span>
-                        </div>
+                    <div class="skill-group">
+                        <h3 class="skill-group-title">Frontend</h3>
+                        <ul class="skill-list">
+                            <li class="skill-item"><span class="skill-level">Expert:</span> Angular (Latest), TypeScript</li>
+                            <li class="skill-item">RxJS, Angular Material, Angular CLI</li>
+                            <li class="skill-item">JavaScript Vanilla (ES6 modulare)</li>
+                            <li class="skill-item">Vue.js, Vuetify, Vuex</li>
+                            <li class="skill-item">React, Next.js, Tailwind CSS</li>
+                            <li class="skill-item">PyQt5 (applicazioni desktop)</li>
+                            <li class="skill-item">Redux (gestione dello stato)</li>
+                        </ul>
                     </div>
 
-                    <div class="skill-category">
-                        <h3 class="skill-category-title">🔗 API & Communication</h3>
-                        <div class="skill-item">
-                            <span class="skill-name">RESTful API Design</span>
-                            <span class="skill-level">Expert</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">WebSockets (Socket.IO)</span>
-                            <span class="skill-level">Expert</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">SignalR Real-time</span>
-                            <span class="skill-level">Expert</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">GraphQL, Server-Sent Events</span>
-                            <span class="skill-level">Advanced</span>
-                        </div>
+                    <div class="skill-group">
+                        <h3 class="skill-group-title">Backend</h3>
+                        <ul class="skill-list">
+                            <li class="skill-item"><span class="skill-level">Expert:</span> Spring Boot + Security + Data</li>
+                            <li class="skill-item">ASP.NET Core Web API</li>
+                            <li class="skill-item">PHP Custom Frameworks</li>
+                            <li class="skill-item">Entity Framework Core</li>
+                        </ul>
                     </div>
 
-                    <div class="skill-category">
-                        <h3 class="skill-category-title">🗄️ Data Management</h3>
-                        <div class="skill-item">
-                            <span class="skill-name">SQL Server (T-SQL, Optimization)</span>
-                            <span class="skill-level">Expert</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">MySQL (InnoDB, Replication)</span>
-                            <span class="skill-level">Advanced</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">MongoDB (Document DB)</span>
-                            <span class="skill-level">Advanced</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Redis (Caching, Pub/Sub)</span>
-                            <span class="skill-level">Advanced</span>
-                        </div>
+                    <div class="skill-group">
+                        <h3 class="skill-group-title">API & Real-time</h3>
+                        <ul class="skill-list">
+                            <li class="skill-item">RESTful API Design</li>
+                            <li class="skill-item">WebSockets, Socket.IO</li>
+                            <li class="skill-item">SignalR (.NET)</li>
+                            <li class="skill-item">Server-Sent Events (SSE)</li>
+                            <li class="skill-item">GraphQL</li>
+                        </ul>
                     </div>
 
-                    <div class="skill-category">
-                        <h3 class="skill-category-title">🎯 Version Control & Collaboration</h3>
-                        <div class="skill-item">
-                            <span class="skill-name">Git Flow, Feature Branching</span>
-                            <span class="skill-level">Expert</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">GitLab, Branch Protection Rules</span>
-                            <span class="skill-level">Expert</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Code Review, Merge Strategies</span>
-                            <span class="skill-level">Expert</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Semantic Versioning, Tagging</span>
-                            <span class="skill-level">Advanced</span>
-                        </div>
+                    <div class="skill-group">
+                        <h3 class="skill-group-title">Database</h3>
+                        <ul class="skill-list">
+                            <li class="skill-item">SQL Server 2019</li>
+                            <li class="skill-item">MySQL</li>
+                            <li class="skill-item">MongoDB (NoSQL)</li>
+                        </ul>
                     </div>
 
-                    <div class="skill-category">
-                        <h3 class="skill-category-title">🎨 Frontend Development</h3>
-                        <div class="skill-item">
-                            <span class="skill-name">Angular (Latest), TypeScript</span>
-                            <span class="skill-level">Expert</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Vue.js, Vuetify, Vuex</span>
-                            <span class="skill-level">Advanced</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">React, Next.js, Tailwind CSS</span>
-                            <span class="skill-level">Advanced</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">RxJS, Angular Material</span>
-                            <span class="skill-level">Advanced</span>
-                        </div>
+                    <div class="skill-group">
+                        <h3 class="skill-group-title">Cloud & API Integration</h3>
+                        <ul class="skill-list">
+                            <li class="skill-item">Google API (Sheets, Drive)</li>
+                            <li class="skill-item">Microsoft 365 API</li>
+                        </ul>
                     </div>
 
-                    <div class="skill-category">
-                        <h3 class="skill-category-title">🚀 DevOps & Deployment</h3>
-                        <div class="skill-item">
-                            <span class="skill-name">Docker (Multi-stage, Compose)</span>
-                            <span class="skill-level">Expert</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">GitLab CI/CD Pipelines</span>
-                            <span class="skill-level">Expert</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Linux System Administration</span>
-                            <span class="skill-level">Expert</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Nginx, Reverse Proxy, SSL</span>
-                            <span class="skill-level">Advanced</span>
-                        </div>
+                    <div class="skill-group">
+                        <h3 class="skill-group-title">DevOps & Infrastruttura</h3>
+                        <ul class="skill-list">
+                            <li class="skill-item">Docker (Multi-stage, Compose)</li>
+                            <li class="skill-item">GitLab CI/CD Pipelines</li>
+                            <li class="skill-item">Ubuntu Server, Nginx, HTTPS</li>
+                            <li class="skill-item">DNS management</li>
+                            <li class="skill-item">Automazione processi deployment</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-group">
+                        <h3 class="skill-group-title">Version Control & Collaboration</h3>
+                        <ul class="skill-list">
+                            <li class="skill-item">Git Flow, Feature Branching</li>
+                            <li class="skill-item">Branch Protection Rules</li>
+                            <li class="skill-item">Code Review, Merge Strategies</li>
+                            <li class="skill-item">Interactive Rebase, Cherry-pick</li>
+                            <li class="skill-item">Semantic Versioning, Tagging</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-group">
+                        <h3 class="skill-group-title">Metodologie & Strumenti</h3>
+                        <ul class="skill-list">
+                            <li class="skill-item">Scrum, Agile Development</li>
+                            <li class="skill-item">IDE: JetBrains Suite</li>
+                            <li class="skill-item">SOLID Principles</li>
+                            <li class="skill-item">Test-Driven Development</li>
+                        </ul>
                     </div>
                 </section>
 
                 <!-- Education -->
                 <section class="section">
-                    <h2 class="section-title">Education</h2>
+                    <h2 class="section-title">Formazione</h2>
                     <div class="info-card">
-                        <div class="degree-title">Computer Science Degree</div>
+                        <div class="degree-title">Computer Science</div>
                         <div class="university">Mount St. Mary University</div>
-                        <div class="period">Maryland, USA</div>
-                        <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-top: var(--space-sm);">
-                            Bachelor's in Computer Science con focus su algoritmi, architetture software e sistemi distribuiti.
+                        <div class="period">Maryland (USA)</div>
+                        <p style="color: var(--color-text-muted); font-size: 0.85rem; margin-top: var(--space-xs);">
+                            Laurea in Informatica
                         </p>
                     </div>
                 </section>
 
                 <!-- Languages -->
                 <section class="section">
-                    <h2 class="section-title">Languages</h2>
+                    <h2 class="section-title">Lingue</h2>
                     <div class="info-card">
                         <div class="language-item">
                             <span>Italiano</span>
-                            <span class="language-level">Native</span>
+                            <span class="language-level">Madrelingua</span>
                         </div>
                         <div class="language-item">
-                            <span>English</span>
-                            <span class="language-level">Fluent</span>
+                            <span>Inglese</span>
+                            <span class="language-level">Avanzato</span>
                         </div>
                     </div>
                 </section>
             </aside>
 
-            <!-- Main Content -->
-            <main class="main-content">
+            <!-- Main Content Area -->
+            <main class="content">
                 <!-- Professional Profile -->
                 <section class="section">
-                    <h2 class="section-title">Professional Profile</h2>
+                    <h2 class="section-title">Profilo Professionale</h2>
                     <p class="profile-text">
-                        <strong>Software Architect</strong> con expertise consolidata in <span class="tech-highlight">architetture enterprise</span> e <span class="tech-highlight">design patterns avanzati</span>. Oltre 4 anni di esperienza nella progettazione e sviluppo di <strong>sistemi distribuiti</strong>, <strong>microservizi</strong> e <strong>applicazioni real-time</strong> ad alte performance. Specializzato in <span class="tech-highlight">Dependency Injection</span>, <span class="tech-highlight">Clean Architecture</span> e <span class="tech-highlight">API design</span> scalabili. Comprovata leadership tecnica nella gestione di progetti complex full-stack enterprise.
+                        Sviluppatore Full Stack con oltre 3 anni di esperienza nello sviluppo di <span class="highlight">applicazioni web aziendali complesse</span>. Specializzato nella progettazione di <span class="highlight">architetture software</span>, sviluppo di <span class="highlight">sistemi gestionali</span> e <span class="highlight">ottimizzazione di database</span>. Competenze trasversali su diversi linguaggi e framework, con particolare attenzione alle <span class="highlight">performance</span> e alla <span class="highlight">scalabilità</span>.
                     </p>
                 </section>
 
                 <!-- Professional Experience -->
                 <section class="section">
-                    <h2 class="section-title">Professional Experience</h2>
+                    <h2 class="section-title">Esperienza Professionale</h2>
                     
                     <div class="experience-item">
                         <div class="job-header">
-                            <div class="position-title">Software Architect & Senior Backend Developer</div>
-                            <div class="company-name">Modular Professional SRL</div>
-                            <div class="period">Jan 2021 - Present (4+ years) • San Vendemiano, TV</div>
+                            <div class="position-title">Software Architecture & Full Stack Developer</div>
+                            <div class="company-name">Azienda di Cucine Industriali</div>
+                            <div class="period">2022 - Presente (3 anni)</div>
                         </div>
 
-                        <div class="experience-category">
-                            <div class="category-title">🏗️ Enterprise Software Architecture</div>
+                        <div class="experience-section">
+                            <div class="experience-section-title">🔄 Migrazione del Sistema Gestionale Aziendale</div>
                             <ul class="achievement-list">
-                                <li class="achievement-item">Progettazione <span class="tech-highlight">architettura multi-layer</span> enterprise con <strong>separation of concerns</strong> completa</li>
-                                <li class="achievement-item">Implementazione <span class="tech-highlight">Dependency Injection</span> container personalizzato per business logic layer</li>
-                                <li class="achievement-item">Decomposizione monolite legacy in <span class="tech-highlight">microservizi indipendenti</span> con API Gateway</li>
-                                <li class="achievement-item">Design <span class="tech-highlight">Domain-Driven Architecture</span> con bounded contexts e aggregates</li>
+                                <li class="achievement-item">Pianificazione e implementazione della migrazione completa, garantendo continuità operativa</li>
+                                <li class="achievement-item">Ottimizzazione delle strutture dati e dei processi aziendali</li>
                             </ul>
                         </div>
 
-                        <div class="experience-category">
-                            <div class="category-title">💻 Advanced Backend Development</div>
+                        <div class="experience-section">
+                            <div class="experience-section-title">💻 Sviluppo Web App Gestionale Interna</div>
                             <ul class="achievement-list">
-                                <li class="achievement-item"><span class="tech-highlight">Spring Boot ecosystem</span>: IoC Container, Spring Security con JWT, Spring Data JPA</li>
-                                <li class="achievement-item"><span class="tech-highlight">.NET Core development</span>: Clean Architecture, Entity Framework Core, Web API patterns</li>
-                                <li class="achievement-item">Implementazione <span class="tech-highlight">Repository Pattern</span> con Unit of Work per data abstraction</li>
-                                <li class="achievement-item">Design <span class="tech-highlight">RESTful APIs</span> scalabili con HATEOAS e OpenAPI documentation</li>
+                                <li class="achievement-item">Architettura e sviluppo di un'applicazione web per la gestione dei processi produttivi</li>
+                                <li class="achievement-item">Backend in PHP con database SQL Server 2019</li>
+                                <li class="achievement-item">Frontend in JavaScript Vanilla con libreria personalizzata (ES6 modulare)</li>
+                                <li class="achievement-item">Implementazione di funzionalità avanzate: gestione processi fasi di lavoro, visualizzazione disegni tecnici integrata, sistema di chat interna, MRP per acquisti e gestione materiali, sistema logistico con ubicazioni, gestione dell'ordinato e delle spedizioni, generazione automatica DDT</li>
                             </ul>
                         </div>
 
-                        <div class="experience-category">
-                            <div class="category-title">⚡ Real-time Systems & Live Data</div>
+                        <div class="experience-section">
+                            <div class="experience-section-title">🗄️ Ottimizzazione Database</div>
                             <ul class="achievement-list">
-                                <li class="achievement-item"><span class="tech-highlight">WebSocket implementation</span> per real-time messaging con connection pooling</li>
-                                <li class="achievement-item"><span class="tech-highlight">SignalR (.NET)</span> per sincronizzazione dati cross-client in tempo reale</li>
-                                <li class="achievement-item"><span class="tech-highlight">Server-Sent Events</span> per live dashboard updates e notifiche push</li>
-                                <li class="achievement-item">Gestione <span class="tech-highlight">concurrent connections</span> con room management e event broadcasting</li>
+                                <li class="achievement-item">Progettazione e sviluppo di query e stored procedure ottimizzate</li>
+                                <li class="achievement-item">Focus su reusability e performance per garantire tempi di risposta rapidi</li>
+                                <li class="achievement-item">Implementazione di best practices per la gestione di database complessi</li>
                             </ul>
                         </div>
 
-                        <div class="experience-category">
-                            <div class="category-title">🗄️ Database Architecture & Optimization</div>
+                        <div class="experience-section">
+                            <div class="experience-section-title">🎯 Version Control & Team Collaboration</div>
                             <ul class="achievement-list">
-                                <li class="achievement-item">Advanced <span class="tech-highlight">Entity Framework Core</span> con lazy loading, change tracking e migrations</li>
-                                <li class="achievement-item"><span class="tech-highlight">Query optimization</span>: stored procedures, indexes tuning, execution plan analysis</li>
-                                <li class="achievement-item">Implementation <span class="tech-highlight">CQRS pattern</span> per performance optimization read/write operations</li>
-                            </ul>
-                        </div>
-
-                        <div class="experience-category">
-                            <div class="category-title">🎯 Version Control & Team Collaboration</div>
-                            <ul class="achievement-list">
-                                <li class="achievement-item"><span class="tech-highlight">Git Flow mastery</span>: feature branches, release branches, hotfix workflows</li>
-                                <li class="achievement-item"><span class="tech-highlight">Branch protection rules</span>: mandatory code reviews, CI/CD checks, merge strategies</li>
-                                <li class="achievement-item"><span class="tech-highlight">Advanced Git operations</span>: interactive rebase, cherry-pick, conflict resolution</li>
-                                <li class="achievement-item"><span class="tech-highlight">Semantic versioning</span>: automated tagging, changelog generation, release management</li>
+                                <li class="achievement-item">Git Flow mastery: feature branches, release branches, hotfix workflows</li>
+                                <li class="achievement-item">Branch protection rules: mandatory code reviews, CI/CD checks, merge strategies</li>
+                                <li class="achievement-item">Advanced Git operations: interactive rebase, cherry-pick, conflict resolution</li>
+                                <li class="achievement-item">Semantic versioning: automated tagging, changelog generation, release management</li>
                             </ul>
                         </div>
                     </div>
@@ -990,26 +740,26 @@
                         <div class="job-header">
                             <div class="position-title">Senior Full Stack Developer (Freelance)</div>
                             <div class="company-name">KASHMIR LAB S.R.L.</div>
-                            <div class="period">6 months • Remote</div>
+                            <div class="period">6 mesi • Remote</div>
                         </div>
 
-                        <div class="experience-category">
-                            <div class="category-title">💻 Modern Web Application Development</div>
+                        <div class="experience-section">
+                            <div class="experience-section-title">💻 Modern Web Application Development</div>
                             <ul class="achievement-list">
-                                <li class="achievement-item"><span class="tech-highlight">Angular (Latest)</span>: Sviluppo SPA enterprise con TypeScript, RxJS e component architecture</li>
-                                <li class="achievement-item"><span class="tech-highlight">Spring Boot backend</span>: REST API development con Spring Security e data validation</li>
-                                <li class="achievement-item"><span class="tech-highlight">Frontend-Backend integration</span>: HTTP client optimization, error handling e state management</li>
-                                <li class="achievement-item"><span class="tech-highlight">Responsive UI/UX</span>: Angular Material, flexbox layouts, mobile-first approach</li>
+                                <li class="achievement-item">Angular (Latest): Sviluppo SPA enterprise con TypeScript, RxJS e component architecture</li>
+                                <li class="achievement-item">Spring Boot backend: REST API development con Spring Security e data validation</li>
+                                <li class="achievement-item">Frontend-Backend integration: HTTP client optimization, error handling e state management</li>
+                                <li class="achievement-item">Responsive UI/UX: Angular Material, flexbox layouts, mobile-first approach</li>
                             </ul>
                         </div>
 
-                        <div class="experience-category">
-                            <div class="category-title">🔧 Enterprise Development Practices</div>
+                        <div class="experience-section">
+                            <div class="experience-section-title">🔧 Enterprise Development Practices</div>
                             <ul class="achievement-list">
-                                <li class="achievement-item"><span class="tech-highlight">Angular CLI mastery</span>: Project scaffolding, build optimization, environment configuration</li>
-                                <li class="achievement-item"><span class="tech-highlight">TypeScript advanced</span>: Interfaces, generics, decorators per type-safe development</li>
-                                <li class="achievement-item"><span class="tech-highlight">Spring Boot integration</span>: JPA repositories, service layer patterns, dependency injection</li>
-                                <li class="achievement-item"><span class="tech-highlight">Team collaboration</span>: Code reviews, Git workflows, agile development practices</li>
+                                <li class="achievement-item">Angular CLI mastery: Project scaffolding, build optimization, environment configuration</li>
+                                <li class="achievement-item">TypeScript advanced: Interfaces, generics, decorators per type-safe development</li>
+                                <li class="achievement-item">Spring Boot integration: JPA repositories, service layer patterns, dependency injection</li>
+                                <li class="achievement-item">Team collaboration: Code reviews, Git workflows, agile development practices</li>
                             </ul>
                         </div>
                     </div>
@@ -1017,98 +767,143 @@
 
                 <!-- Key Projects -->
                 <section class="section">
-                    <h2 class="section-title">Enterprise Projects Portfolio</h2>
+                    <h2 class="section-title">Progetti Significativi</h2>
                     
                     <div class="project-card">
-                        <div class="project-title">Sistema Gestionale Produzione Industriale - Enterprise ERP</div>
-                        <div class="project-stack">Architecture: Clean Architecture • Backend: PHP Custom Framework, SQL Server 2019 • Frontend: JavaScript ES6+ Modular • Real-time: WebSockets</div>
-                        
+                        <div class="project-title">Infrastruttura CI/CD con GitLab e Docker</div>
+                        <div class="project-meta">Realizzato Maggio 2025</div>
+                        <div class="project-tech">
+                            <span class="tech-tag">GitLab CI/CD</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">Ubuntu Server</span>
+                            <span class="tech-tag">Nginx</span>
+                            <span class="tech-tag">HTTPS</span>
+                            <span class="tech-tag">DNS</span>
+                        </div>
                         <ul class="achievement-list">
-                            <li class="achievement-item"><strong>Custom MVC Framework</strong>: Sviluppo framework proprietario con dependency injection container, routing automatico e controller factory pattern</li>
-                            <li class="achievement-item"><strong>Real-time Production Tracking</strong>: Sistema WebSocket per monitoraggio live fasi produttive con room management e event broadcasting</li>
-                            <li class="achievement-item"><strong>Advanced Workflow Engine</strong>: State machine per gestione stati ordini con business rules validation e transition logging</li>
-                            <li class="achievement-item"><strong>Modular Frontend Architecture</strong>: Sistema modulare ES6+ con component-based UI, event delegation e lazy loading</li>
-                            <li class="achievement-item"><strong>Database Optimization</strong>: Query tuning, stored procedures ottimizzate, indexing strategies per dataset >100k records</li>
-                            <li class="achievement-item"><strong>Integration Layer</strong>: API gateway per integrazione sistemi legacy con data transformation e error handling</li>
+                            <li class="achievement-item">Progettazione e implementazione di un'infrastruttura completa CI/CD per il deployment automatizzato di applicazioni</li>
+                            <li class="achievement-item">Setup di server Ubuntu con Docker, GitLab CE e Nginx come reverse proxy</li>
+                            <li class="achievement-item">Configurazione di pipeline CI/CD automatizzate con GitLab Runners</li>
+                            <li class="achievement-item">Implementazione di HTTPS con certificati self-signed</li>
+                            <li class="achievement-item">Creazione di script di automazione per la gestione del deployment</li>
+                            <li class="achievement-item">Documentazione completa del processo per gli sviluppatori del team</li>
                         </ul>
                     </div>
 
                     <div class="project-card">
-                        <div class="project-title">Enterprise CRM - Microservices Platform</div>
-                        <div class="project-stack">Architecture: Domain-Driven Design • Backend: .NET Core 6, Entity Framework Core • Database: SQL Server, Redis • Frontend: Vue.js, Vuetify • DevOps: Docker, GitLab CI/CD</div>
-                        
+                        <div class="project-title">CRM Aziendale</div>
+                        <div class="project-tech">
+                            <span class="tech-tag">.NET API</span>
+                            <span class="tech-tag">Entity Framework</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Vuetify</span>
+                            <span class="tech-tag">Scrum</span>
+                            <span class="tech-tag">Git</span>
+                        </div>
                         <ul class="achievement-list">
-                            <li class="achievement-item"><strong>Domain-Driven Design</strong>: Modellazione bounded contexts (Customer, Sales, Marketing, Support) con aggregate patterns</li>
-                            <li class="achievement-item"><strong>CQRS Implementation</strong>: Separazione command/query con event sourcing per audit trail completo e performance optimization</li>
-                            <li class="achievement-item"><strong>Advanced Authentication</strong>: JWT + OAuth2 con role-based authorization, refresh token rotation e session management</li>
-                            <li class="achievement-item"><strong>Entity Framework Mastery</strong>: Code-first migrations, lazy loading optimization, change tracking per performance enterprise</li>
-                            <li class="achievement-item"><strong>Redis Integration</strong>: Distributed caching, session storage, pub/sub per real-time notifications</li>
-                            <li class="achievement-item"><strong>Vue.js SPA</strong>: Responsive UI con Vuetify, Vuex state management, route guards e component composition</li>
+                            <li class="achievement-item">Sviluppo di un sistema CRM completo per la gestione delle relazioni con i clienti</li>
+                            <li class="achievement-item">Backend: .NET API con Entity Framework</li>
+                            <li class="achievement-item">Database: MySQL personalizzato</li>
+                            <li class="achievement-item">Frontend: Vue.js con Vuetify per UI responsive</li>
+                            <li class="achievement-item">Metodologia: Scrum con utilizzo di Git per version control</li>
                         </ul>
                     </div>
 
                     <div class="project-card">
-                        <div class="project-title">Authentication & User Management Microservice</div>
-                        <div class="project-stack">Architecture: Hexagonal (Ports & Adapters) • Backend: Spring Boot 3.x, Spring Security • Database: MongoDB • Frontend: Next.js 15, React 19 • Container: Docker Compose</div>
-                        
+                        <div class="project-title">Google Sheets to SQL Downloader - Applicazione Desktop</div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">PyQt5</span>
+                            <span class="tech-tag">Google Sheets API</span>
+                            <span class="tech-tag">Google Drive API</span>
+                            <span class="tech-tag">SQL Server</span>
+                            <span class="tech-tag">BULK INSERT</span>
+                        </div>
                         <ul class="achievement-list">
-                            <li class="achievement-item"><strong>Hexagonal Architecture</strong>: Clean separation tra business logic e infrastructure con dependency inversion principle</li>
-                            <li class="achievement-item"><strong>Spring Security Advanced</strong>: Custom authentication providers, JWT stateless authentication con refresh token mechanism</li>
-                            <li class="achievement-item"><strong>OAuth2 Integration</strong>: Social login (Google, GitHub) con provider abstraction layer e user profile mapping</li>
-                            <li class="achievement-item"><strong>MongoDB Document Design</strong>: Embedded documents per user profiles, indexing strategies per performance queries</li>
-                            <li class="achievement-item"><strong>Next.js Modern Stack</strong>: Server-side rendering, App Router, Tailwind CSS con Radix UI components</li>
-                            <li class="achievement-item"><strong>Container Orchestration</strong>: Multi-container Docker setup con service discovery, health checks e logging aggregation</li>
+                            <li class="achievement-item">Sviluppo di un'applicazione desktop completa in Python per sincronizzare dati da Google Sheets a SQL Server</li>
+                            <li class="achievement-item">Frontend: PyQt5 con interfaccia utente reattiva e feedback in tempo reale</li>
+                            <li class="achievement-item">Integrazione API: Google Sheets API, Google Drive API, autenticazione con Service Account</li>
+                            <li class="achievement-item">Database: Importazione dati in SQL Server con ottimizzazione BULK INSERT</li>
+                            <li class="achievement-item">Funzionalità avanzate: sincronizzazione automatica delle traduzioni multilingua, gestione errori robusta e logging dettagliato</li>
+                            <li class="achievement-item">Sistema di configurazione completo con wizard interattivo</li>
+                            <li class="achievement-item">Packaging dell'applicazione in eseguibile standalone con PyInstaller</li>
+                            <li class="achievement-item">Architettura: Design modulare con separazione delle responsabilità e gestione asincrona delle operazioni</li>
                         </ul>
                     </div>
 
                     <div class="project-card">
-                        <div class="project-title">Data Integration Platform - ETL Advanced System</div>
-                        <div class="project-stack">Architecture: Event-Driven • Backend: Python 3.11, SQLAlchemy • Integration: Google Sheets API, Microsoft 365 • UI: PyQt5 • Database: SQL Server, BULK INSERT</div>
-                        
+                        <div class="project-title">User Authentication Service - Full Stack Solution</div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Spring Boot 3.4</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">JWT</span>
+                            <span class="tech-tag">OAuth2</span>
+                            <span class="tech-tag">Next.js 15.2.2</span>
+                            <span class="tech-tag">React 19.0</span>
+                            <span class="tech-tag">Tailwind CSS</span>
+                            <span class="tech-tag">Docker</span>
+                        </div>
                         <ul class="achievement-list">
-                            <li class="achievement-item"><strong>Strategy Pattern ETL</strong>: Pluggable transformation algorithms con factory pattern per diversi data sources</li>
-                            <li class="achievement-item"><strong>Google API Integration</strong>: Service Account authentication, Sheets/Drive API con rate limiting e retry logic</li>
-                            <li class="achievement-item"><strong>Performance Optimization</strong>: Async/await processing, BULK INSERT operations, process completion <5 minuti</li>
-                            <li class="achievement-item"><strong>Error Handling Advanced</strong>: Chain of responsibility pattern, detailed logging, rollback capabilities</li>
-                            <li class="achievement-item"><strong>PyQt5 Desktop UI</strong>: Real-time progress feedback, configuration wizard, error reporting interface</li>
-                            <li class="achievement-item"><strong>Monitoring Integration</strong>: Microsoft 365 notifications, detailed operation tracking, performance metrics</li>
+                            <li class="achievement-item">Sviluppo di un sistema completo di autenticazione e gestione utenti</li>
+                            <li class="achievement-item">Backend: Spring Boot 3.4 con MongoDB per la persistenza dei dati</li>
+                            <li class="achievement-item">JWT (JSON Web Token) per l'autenticazione classica</li>
+                            <li class="achievement-item">OAuth2 per social login (Google e GitHub)</li>
+                            <li class="achievement-item">Autorizzazione basata su ruoli con Spring Security</li>
+                            <li class="achievement-item">API RESTful per registrazione, login e gestione profili utente</li>
+                            <li class="achievement-item">Frontend: Next.js 15.2.2 con React 19.0</li>
+                            <li class="achievement-item">Architettura moderna con App Router e organizzazione per feature</li>
+                            <li class="achievement-item">UI responsive con Tailwind CSS e componenti Radix UI per accessibilità</li>
+                            <li class="achievement-item">Supporto multilingua (internazionalizzazione)</li>
+                            <li class="achievement-item">Dashboard amministrativa per gestione utenti</li>
+                            <li class="achievement-item">DevOps: Containerizzazione completa con Docker e Docker Compose</li>
+                            <li class="achievement-item">Configurazione per deployment su Vercel</li>
                         </ul>
                     </div>
 
                     <div class="project-card">
-                        <div class="project-title">DevOps Infrastructure - CI/CD Enterprise Pipeline</div>
-                        <div class="project-stack">Infrastructure: Ubuntu Server, Docker, GitLab CE • Web Server: Nginx, SSL Certificates • CI/CD: GitLab Runners, Automated Testing • Security: Self-signed PKI</div>
-                        
+                        <div class="project-title">ImportStore - Sistema ETL Avanzato</div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Microsoft 365</span>
+                            <span class="tech-tag">Database</span>
+                        </div>
                         <ul class="achievement-list">
-                            <li class="achievement-item"><strong>Infrastructure Setup</strong>: Ubuntu Server hardening, Docker containerization, GitLab CE self-hosted deployment</li>
-                            <li class="achievement-item"><strong>CI/CD Pipeline Design</strong>: Multi-stage pipelines con automated testing, security scanning, deployment strategies</li>
-                            <li class="achievement-item"><strong>Git Flow Implementation</strong>: Branch protection rules, mandatory code reviews, automated conflict resolution</li>
-                            <li class="achievement-item"><strong>SSL/TLS Security</strong>: Self-signed certificate authority, HTTPS enforcement, secure communication protocols</li>
-                            <li class="achievement-item"><strong>Nginx Reverse Proxy</strong>: Load balancing, SSL termination, request routing, performance optimization</li>
-                            <li class="achievement-item"><strong>Monitoring & Logging</strong>: Centralized logging, performance metrics, alerting system integration</li>
+                            <li class="achievement-item">Progettazione e sviluppo di un sistema ETL (Extract, Transform, Load) completo in Python</li>
+                            <li class="achievement-item">Architettura modulare con separazione delle responsabilità: gestione connessioni al database, logging degli eventi (doppio sistema: file e database), notifiche via email (integrazione con Microsoft 365), operazioni di trasferimento dati specifiche</li>
+                            <li class="achievement-item">Robusta gestione degli errori con try/except per ogni operazione DB, rollback transazioni e propagazione controllata</li>
+                            <li class="achievement-item">Sincronizzazione oraria automatizzata tra server di due aziende diverse</li>
+                            <li class="achievement-item">Sistema di notifiche tramite API Microsoft 365 con template HTML</li>
+                            <li class="achievement-item">Tracciamento dettagliato delle operazioni con ID univoci e timestamp</li>
+                            <li class="achievement-item">Ottimizzazione delle performance per completare l'intero processo in soli 5 minuti</li>
+                            <li class="achievement-item">Design scalabile che permette di aggiungere facilmente nuove operazioni</li>
                         </ul>
                     </div>
                 </section>
 
                 <!-- Soft Skills -->
                 <section class="section">
-                    <h2 class="section-title">Professional Soft Skills</h2>
+                    <h2 class="section-title">Soft Skills</h2>
                     <div class="soft-skills-grid">
-                        <div class="soft-skill-card">
-                            <div class="soft-skill-title">🎯 Architectural Vision</div>
-                            <div class="soft-skill-desc">Capacità di progettare sistemi enterprise scalabili e maintainable con visione a lungo termine</div>
+                        <div class="soft-skill-item">
+                            <div class="soft-skill-title">Problem solving</div>
+                            <div class="soft-skill-desc">Capacità di analizzare problemi complessi e sviluppare soluzioni efficaci</div>
                         </div>
-                        <div class="soft-skill-card">
-                            <div class="soft-skill-title">🧩 Complex Problem Solving</div>
-                            <div class="soft-skill-desc">Decomposizione di problemi architetturali complessi in soluzioni modulari ed eleganti</div>
+                        <div class="soft-skill-item">
+                            <div class="soft-skill-title">Autonomia</div>
+                            <div class="soft-skill-desc">Abilità di gestire progetti dall'analisi al deployment con minima supervisione</div>
                         </div>
-                        <div class="soft-skill-card">
-                            <div class="soft-skill-title">👥 Technical Leadership</div>
-                            <div class="soft-skill-desc">Mentoring sviluppatori junior su design patterns, best practices e code quality</div>
+                        <div class="soft-skill-item">
+                            <div class="soft-skill-title">Apprendimento rapido</div>
+                            <div class="soft-skill-desc">Predisposizione all'acquisizione di nuove tecnologie e competenze</div>
                         </div>
-                        <div class="soft-skill-card">
-                            <div class="soft-skill-title">📚 Continuous Innovation</div>
-                            <div class="soft-skill-desc">Aggiornamento costante su tecnologie emergenti e metodologie di sviluppo moderne</div>
+                        <div class="soft-skill-item">
+                            <div class="soft-skill-title">Attenzione ai dettagli</div>
+                            <div class="soft-skill-desc">Precisione nella scrittura del codice e documentazione</div>
+                        </div>
+                        <div class="soft-skill-item">
+                            <div class="soft-skill-title">Team working</div>
+                            <div class="soft-skill-desc">Esperienza in ambiente Scrum con collaborazione efficace tra sviluppatori</div>
                         </div>
                     </div>
                 </section>
@@ -1117,7 +912,7 @@
 
         <!-- Footer -->
         <footer class="footer">
-            <p>Autorizzo il trattamento dei miei dati personali ai sensi del D.lgs 196/2003 e dell'art. 13 GDPR</p>
+            <p>Autorizzo il trattamento dei miei dati personali ai sensi del D.lgs 196 del 30 giugno 2003 e dell'art. 13 GDPR</p>
         </footer>
     </div>
 </body>
